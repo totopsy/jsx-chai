@@ -31,7 +31,7 @@
   "dependencies": {
     "collapse-white-space": "^1.0.0",
     "react-addons-test-utils": "^15.0.0",
-    "react-element-to-jsx-string": "github:totopsy/react-element-to-jsx-string"
+    "@totopsy/react-element-to-jsx-string": "^2.5.1"
   },
   "devDependencies": {
     "babel-cli": "^6.1.2",
