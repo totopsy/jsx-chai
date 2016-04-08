@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import chai, {AssertionError, expect} from 'chai'
 import jsxChai from '../src/jsx-chai'
 import React from 'react'
@@ -106,6 +107,41 @@ describe('chai-jsx', () => {
       expect(
         () => expect({test: 'value'}).to.include.keys('otherTest')
       ).to.throw(AssertionError)
+    })
+
+    it('should not fail for whitespace', () => {
+      const whole = (
+        <div>
+          <span>
+            <a>
+              Foo
+            </a>
+          </span>
+        </div>
+      )
+      const part = (
+        <a>
+          Foo
+        </a>
+      )
+
+      expect(
+        () => expect(whole).to.include(part)
+      ).to.not.throw()
+    })
+
+    it('uses the underlying JSX object to determine if jsx-chai should be used', () => {
+      class Component {
+        render() {
+          return <span>Left</span>
+        }
+      }
+
+      const result = Component.prototype.render()
+
+      expect(
+        () => expect(result).to.include('Left')
+      ).to.not.throw()
     })
 
   })
